@@ -120,12 +120,17 @@
 #define MNS_VERSION 1
 
 // Forward declarations
-static void mnsFactoryReset(void) __reentrant;
-static void mnsPowerUp(void) __reentrant;
-static void mnsPoll(void) __reentrant;
-static Processed mnsProcessMessage(Message * m);
-static void mnsLowIsr(void) __reentrant;
+// static void mnsFactoryReset(void) __reentrant;
+// static void mnsPowerUp(void) __reentrant;
+// static void mnsPoll(void) __reentrant;
+// static void mnsLowIsr(void) __reentrant;
+static void mnsFactoryReset(void);
+static void mnsPowerUp(void);
+static void mnsPoll(void);
+static void mnsLowIsr(void);
+
 static uint8_t getParameter(uint8_t);
+static Processed mnsProcessMessage(Message * m);
 #ifdef VLCB_DIAG
 static DiagnosticVal * mnsGetDiagnostic(uint8_t index);
 /**

@@ -1,63 +1,150 @@
-# VLCBlib_PIC
-C library for VLCB for use on PIC devices.
-Uses XC8.
-Has CAN transport functionality using the PIC18 ECAN peripheral.
+Hier ist dein Text mit passenden Icons, klar strukturiert und gut lesbar für GitHub:
 
-## The module application
-An VLCB module using this library needs to consider the following application responsibilities:
+---
 
-### Inputs
-   - Monitoring input pins, 
-   - Perform behaviour based upon module NV settings,
-   - Save input state according to type of input in RAM
-   - Send events to the transport layer according to behaviour requirements
+# 📡 VLCBlib_PIC
 
-### Outputs
-   - Receive messages from the transport layer or receive actions from the action queue
-   - Use the NV settings to determine the behaviour
-   - Save state into non volatile memory e.g. EEPROM
-   - Make changes to the output pin state
+📚 C library for VLCB for use on PIC devices
+⚙️ Uses XC8 compiler
+🔗 Provides CAN transport functionality using the PIC18 ECAN peripheral
 
-### On power on
-   - Restore output state using the information stored in non volatile memory
-   - Initialise input state based upon current input pin state
+---
 
-### Regular poll
-   - Update and perform time based behaviour
+## 🧩 Module Application
 
-## A module designer needs to:
- 1. Determine which services the module will use.
- 2. Write a modules.h which is used by the VLCBlib to control its operation.
- 3. If the module will use NVs then:
-     - Define the NV usage and allocation,
-     - Define the memory allocation (type and address) for the NVs,
-     - Define the default value (factory reset settings) of the NVs,
-     - Determine whether any validation of NV settings is required.
- 4. If the module has a CAN interface:
-     - Decide where in NVM the CANID is to be stored,
-     - Decide how much memory can be used for transmit and receive buffers.
- 5. If the module is to support event teaching:
-     - Decide the number of events and number of EVs per event,
-     - Define the event EV usage and allocation,
-     - Define the memory allocation (type and address) for the EVs,
- 6. If the module also supports produced events then:
-     - If the concept of Happenings is to be used then defined the size of the Happening identifier,
-     - Provide a function to provide the current event state given a Happening
- 7. If the module also supports consumed events then:
-     - If Actions concept is to be used then the size of the Action queue should be defined.
- 8. All modules also need:
-     - The address and type of NVM where the module's node number is to be stored,
-     - The address and type of NVM where the mode is to be stored,
-     - Define the module type name, module ID and version,
-     - The number of LEDs used to display module state,
-     - A macro to obtain the push button state,
-     - A macro to set up the ports for the LEDs and push button.
+An VLCB module using this library must handle the following responsibilities:
 
-## Other information
-   - The module mode is available using the uint8_t mode global variable.
-   - The module's node number is available as Word nn global variable.
-   - A module may define a function to process VLCB messages before being handled by the library.
-   - A module may also define a function to process VLCB messages if not handled by the library. 
-  
-# Full documentation
-The full user documentation (look in the \*.h files) and developer documentation (look in the \*.c files) can be viewed by opening doc/html/index.html in your browser.
+---
+
+### 📥 Inputs
+
+* 🔍 Monitor input pins
+* ⚙️ Perform behaviour based on module NV settings
+* 💾 Store input state in RAM depending on input type
+* 📡 Send events to the transport layer based on behaviour requirements
+
+---
+
+### 📤 Outputs
+
+* 📩 Receive messages from the transport layer or action queue
+* ⚙️ Use NV settings to determine behaviour
+* 💾 Store state in non-volatile memory (e.g. EEPROM)
+* 🔌 Update output pin states
+
+---
+
+### 🔋 On Power-On
+
+* ♻️ Restore output state from non-volatile memory
+* 🔧 Initialise input state from current pin conditions
+
+---
+
+### ⏱ Regular Poll
+
+* 🔄 Update time-based behaviour
+* ⚙️ Execute periodic tasks
+
+---
+
+## 🧠 Module Designer Responsibilities
+
+A module designer must:
+
+---
+
+### 1️⃣ Core Design
+
+* 🧩 Determine which services the module will use
+* 📝 Create `modules.h` to configure VLCBlib behaviour
+
+---
+
+### 2️⃣ NV (Non-Volatile Memory)
+
+If NVs are used:
+
+* 📦 Define NV usage and allocation
+* 🧠 Define memory mapping (type + address)
+* 🏭 Define factory reset default values
+* ✅ Decide whether NV validation is required
+
+---
+
+### 3️⃣ CAN Interface
+
+If CAN is used:
+
+* 🗂 Decide where CANID is stored in NVM
+* 📊 Define TX/RX buffer memory limits
+
+---
+
+### 4️⃣ Event Teaching
+
+If event teaching is supported:
+
+* 🔢 Define number of events and EVs per event
+* 📦 Allocate EV memory (type + address)
+
+---
+
+### 5️⃣ Produced Events
+
+If produced events are supported:
+
+* 📍 Define Happening identifier size (if used)
+* ⚡ Provide function mapping Happening → event state
+
+---
+
+### 6️⃣ Consumed Events
+
+If consumed events are supported:
+
+* 📥 Define Action queue size (if used)
+
+---
+
+### 7️⃣ Mandatory Module Data
+
+All modules must define:
+
+* 🧠 Node number storage location (NVM type + address)
+* ⚙️ Mode storage location
+* 🏷 Module type name, module ID, version
+* 💡 Number of status LEDs
+* 🔘 Macro for push button state
+* 🔌 Port setup macros for LEDs and button
+
+---
+
+## 🧾 Runtime Information
+
+* ⚙️ Module mode is available via global variable `uint8_t mode`
+* 🧠 Node number is available as global variable `Word nn`
+
+---
+
+## 🧩 Message Handling
+
+* 📨 Optional pre-processing of VLCB messages before library handling
+* 📬 Optional fallback handler for unprocessed messages
+
+---
+
+## 📚 Full Documentation
+
+📖 Full user documentation:
+Open `doc/html/index.html` in a browser
+
+🧑‍💻 Developer documentation:
+Available inside `*.c` source files
+
+---
+
+Wenn du willst, kann ich dir als nächsten Schritt noch:
+
+* ein **GitHub README-optimiertes Layout (mit Badges, Version, CI-ready Struktur)** bauen
+* oder das Ganze in eine **saubere Doxygen-Konfiguration für MPLAB-Projekte** überführen

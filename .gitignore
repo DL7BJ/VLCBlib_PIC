@@ -1,0 +1,8 @@
+*.o
+*.swp
+*.un~
+build
+test
+dev
+private
+
