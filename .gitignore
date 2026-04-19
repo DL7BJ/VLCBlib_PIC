@@ -1,5 +1,6 @@
 *.o
 *.swp
+*.swo
 *.un~
 build
 test
